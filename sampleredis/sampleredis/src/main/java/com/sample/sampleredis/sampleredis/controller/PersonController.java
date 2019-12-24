@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 
 @Controller
-public class PersonController  {
+public class PersonController {
 
     @Autowired
     public PersonService service;

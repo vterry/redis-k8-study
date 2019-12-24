@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-redis-app
+  labels:
+    app: sample-redis-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sample-redis-app
+  template:
+    metadata:
+      labels:
+        app: sample-redis-app
+        version: v1
+    spec:
+      containers:
+        - name: sample-redis-app
+          image: sampleredis:1.0
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          env:
+            - name: REDIS_HOST
+              value: "redis-master"
+            - name: REDIS_PORT
+              value: "6379"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sample-redis-app
+  labels:
+    app: sample-redis-app
+    service: sample-redis-app
+spec:
+  selector:
+    app: sample-redis-app
+    version: v1
+  ports:
+    - protocol: TCP
+      name: http
+      port: 8080
+      targetPort: 8080
