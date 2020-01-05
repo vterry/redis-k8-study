@@ -18,8 +18,8 @@ spring:
     hibernate:
       ddl-auto: update
   redis:
-    host: ${REDIS_HOST:localhost}
-    port: ${REDIS_PORT:6379}
+    host: ${REDIS_HOST:192.168.99.101}
+    port: ${REDIS_PORT:30302}
 #    sentinel:
 #      master: mymaster
 #      nodes: redis-ha:26379

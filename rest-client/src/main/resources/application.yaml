@@ -1,0 +1,8 @@
+debug: true
+
+server:
+  port: 8081
+
+sample-server-app:
+  authorizationUrl: ${AUTH_HOST:http://localhost:8080/auhtorization}
+  listClientsUrl: ${LIST_CLIENTS_URL:http://localhost:8080/persons}
